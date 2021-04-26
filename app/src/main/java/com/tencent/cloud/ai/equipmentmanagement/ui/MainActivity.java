@@ -1,14 +1,15 @@
-package com.tencent.cloud.ai.equipmentmanagement;
+package com.tencent.cloud.ai.equipmentmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.tencent.cloud.ai.equipmentmanagement.R;
 
 public class MainActivity extends AppCompatActivity {
     private EditText et_name;
@@ -39,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-
-
     }
     public void initView() {
         et_name = findViewById(R.id.et_name);

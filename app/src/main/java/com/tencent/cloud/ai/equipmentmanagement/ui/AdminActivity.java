@@ -1,8 +1,10 @@
-package com.tencent.cloud.ai.equipmentmanagement;
+package com.tencent.cloud.ai.equipmentmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.tencent.cloud.ai.equipmentmanagement.R;
 
 public class AdminActivity extends AppCompatActivity {
 
