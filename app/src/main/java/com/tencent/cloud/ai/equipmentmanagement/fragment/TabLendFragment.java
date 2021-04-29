@@ -13,11 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.tencent.cloud.ai.equipmentmanagement.R;
 
-public class TabFragment extends Fragment {
-    public static TabFragment newInstance(String label) {
+public class TabLendFragment extends Fragment {
+    public static TabLendFragment newInstance(String label) {
         Bundle args = new Bundle();
         args.putString("label", label);
-        TabFragment fragment = new TabFragment();
+        TabLendFragment fragment = new TabLendFragment();
         fragment.setArguments(args);
         return fragment;
     }

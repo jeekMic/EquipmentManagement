@@ -18,5 +18,10 @@
             android:orientation="vertical" >
         </com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView>
     </ScrollView>
-
+    <TextView
+        android:text="实验室使用情况"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
 </LinearLayout>

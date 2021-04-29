@@ -36,5 +36,9 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //权限申请框架
+    implementation 'pub.devrel:easypermissions:2.0.0'
+    //服务器请求框架
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
 }
