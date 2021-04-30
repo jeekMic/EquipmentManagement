@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.tencent.cloud.ai.equipmentmanagement.R;
@@ -15,15 +18,31 @@ import com.tencent.cloud.ai.equipmentmanagement.utils.ScreenshotUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
     private TimeTableView mTimaTableView;
     private List<TimeTableModel> mList;
+    private Button office_fair,use_info;
+    private ScrollView main_scrollview;
+    private LinearLayout sy_application;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         mList = new ArrayList<TimeTableModel>();
         mTimaTableView = (TimeTableView) findViewById(R.id.main_timetable_ly);
+        main_scrollview = findViewById(R.id.main_scrollview);
+        sy_application = findViewById(R.id.sy_application);
+
+
+        office_fair = findViewById(R.id.office_fair);
+        use_info = findViewById(R.id.use_info);
+
+
+
+        office_fair.setOnClickListener(this);
+        use_info.setOnClickListener(this);
+
+
         addList();
         mTimaTableView.setTimeTable(mList);
     }
@@ -70,5 +89,26 @@ public class AdminActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    /**
+     * 按钮的点击事件
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.use_info:
+                main_scrollview.setVisibility(View.VISIBLE);
+                sy_application.setVisibility(View.GONE);
+                break;
+            case R.id.office_fair:
+                main_scrollview.setVisibility(View.INVISIBLE);
+                sy_application.setVisibility(View.GONE);
+                break;
+            default:
+                break;
+
+        }
     }
 }

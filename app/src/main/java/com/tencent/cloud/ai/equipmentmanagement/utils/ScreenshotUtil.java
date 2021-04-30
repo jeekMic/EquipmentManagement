@@ -17,10 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * 截图操作
- * Created by Shall on 2015-07-22.
- */
 public class ScreenshotUtil {
 
     private final static String FILE_SAVEPATH = Environment

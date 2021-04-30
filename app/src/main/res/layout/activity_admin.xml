@@ -5,12 +5,13 @@
     android:orientation="vertical" >
 
     <ScrollView
+        android:visibility="gone"
         android:id="@+id/main_scrollview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:fillViewport="false"
+        android:layout_weight="0.9"
         >
-
         <com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView
             android:id="@+id/main_timetable_ly"
             android:layout_width="fill_parent"
@@ -18,10 +19,78 @@
             android:orientation="vertical" >
         </com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView>
     </ScrollView>
-    <TextView
-        android:text="实验室使用情况"
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/sy_application"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </TextView>
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:padding="40dp"
+        android:orientation="vertical">
+        <Button
+            android:drawableLeft="@android:drawable/btn_star"
+            android:text="审批耗材申请"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_select">
+        </Button>
+        <Button
+            android:drawableLeft="@android:drawable/btn_star"
+            android:text="审批实验室申请"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_select">
+        </Button>
+        <Button
+            android:drawableLeft="@android:drawable/btn_star"
+            android:background="@drawable/btn_select"
+            android:text="审批实验设备申请"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:drawableLeft="@android:drawable/btn_star"
+            android:background="@drawable/btn_select"
+            android:text="查看实验设备总量"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:drawableLeft="@android:drawable/btn_star"
+            android:background="@drawable/btn_select"
+            android:text="查看实验室耗材总量"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </Button>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_weight="0.1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <Button
+            android:id="@+id/use_info"
+            android:text="实验室使用情况"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:layout_height="60dp">
+        </Button>
+        <Button
+            android:text="办公"
+            android:layout_margin="5dp"
+            android:id="@+id/office_fair"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp">
+        </Button>
+    </LinearLayout>
+
 </LinearLayout>
