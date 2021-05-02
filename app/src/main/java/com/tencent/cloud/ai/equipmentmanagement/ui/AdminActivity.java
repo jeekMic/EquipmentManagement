@@ -103,8 +103,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 sy_application.setVisibility(View.GONE);
                 break;
             case R.id.office_fair:
-                main_scrollview.setVisibility(View.INVISIBLE);
-                sy_application.setVisibility(View.GONE);
+                main_scrollview.setVisibility(View.GONE);
+                sy_application.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
