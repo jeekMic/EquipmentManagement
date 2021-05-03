@@ -22,8 +22,6 @@ import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
 
 /**
  * 课表显示View
- *
- * @author shallcheek
  */
 public class TimeTableView extends LinearLayout {
     /**

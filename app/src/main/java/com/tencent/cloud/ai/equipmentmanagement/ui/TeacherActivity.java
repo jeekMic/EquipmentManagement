@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.cloud.ai.equipmentmanagement.R;
+import com.tencent.cloud.ai.equipmentmanagement.base.BaseActivity;
 import com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView;
 import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
 
@@ -27,7 +30,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class TeacherActivity extends AppCompatActivity implements View.OnClickListener {
+public class TeacherActivity extends BaseActivity implements View.OnClickListener {
 
     public final String TAG = this.getClass().getSimpleName();
     String url = "https://wwww.baidu.com";
@@ -39,11 +42,11 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
     private LinearLayout t_sy_application;
     private List<TimeTableModel> mList;
     private TimeTableView mTimaTableView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void myOnCreate() {
         setContentView(R.layout.activity_teacher);
-        mList = new ArrayList<TimeTableModel>();
+        mList = new ArrayList<>();
         initView();
 
         //OkHttp 三部曲
@@ -92,13 +95,11 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.add_class:
-                Log.e("hb===","a"+Thread.currentThread().getName());
                 Toast.makeText(this, "排课", Toast.LENGTH_SHORT).show();
                 t_main_scroview.setVisibility(View.VISIBLE);
                 t_sy_application.setVisibility(View.GONE);
                 break;
             case R.id.use_require:
-                Log.e("hb===","b");
                 Toast.makeText(this, "耗材申请", Toast.LENGTH_SHORT).show();
                 t_main_scroview.setVisibility(View.GONE);
                 t_sy_application.setVisibility(View.VISIBLE);
