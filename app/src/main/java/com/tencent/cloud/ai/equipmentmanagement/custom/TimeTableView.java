@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.cloud.ai.equipmentmanagement.R;
+import com.tencent.cloud.ai.equipmentmanagement.listener.ClassListener;
 import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
 
 
@@ -51,8 +52,10 @@ public class TimeTableView extends LinearLayout {
     private String[] weekname = {"一", "二", "三", "四", "五", "六", "日"};
     public static String[] colorStr = new String[20];
     int colornum = 0;
+
+    public ClassListener listener;
     //数据源
-    private List<TimeTableModel> mListTimeTable = new ArrayList<TimeTableModel>();
+    private List<TimeTableModel> mListTimeTable = new ArrayList<>();
 
 
     public TimeTableView(Context context) {
@@ -84,7 +87,9 @@ public class TimeTableView extends LinearLayout {
         return mWeekline;
     }
 
-
+    public void setListener(ClassListener listener){
+        this.listener = listener;
+    }
     /**
      * 竖向分界线
      *
@@ -216,6 +221,7 @@ public class TimeTableView extends LinearLayout {
             mTime.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    listener.onSelectClass(week, (start + num));
                     Toast.makeText(getContext(), "星期" + week + "第" + (start + num) + "节", Toast.LENGTH_LONG).show();
                 }
             });
@@ -285,6 +291,7 @@ public class TimeTableView extends LinearLayout {
         mTimeTableView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(getContext(), model.getName() + "@" + model.getClassroom(), Toast.LENGTH_LONG).show();
             }
         });

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.tencent.cloud.ai.equipmentmanagement.R;
 import com.tencent.cloud.ai.equipmentmanagement.base.BaseActivity;
 import com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView;
+import com.tencent.cloud.ai.equipmentmanagement.listener.ClassListener;
 import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
 
 import java.io.IOException;
@@ -30,7 +31,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class TeacherActivity extends BaseActivity implements View.OnClickListener {
+public class TeacherActivity extends BaseActivity implements View.OnClickListener, ClassListener {
 
     public final String TAG = this.getClass().getSimpleName();
     String url = "https://wwww.baidu.com";
@@ -61,6 +62,7 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
 
 
         mTimaTableView.setTimeTable(mList);
+        mTimaTableView.setListener(this);
     }
 
     public void initView(){
@@ -120,32 +122,41 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void addList() {
-        mList.add(new TimeTableModel(0, 1, 2, 1, "8:20", "10:10", "test1",
+        mList.add(new TimeTableModel(0, 1, 2, 2, "8:20", "10:10", "test1",
                 "王老师", "1", "2-13"));
-        mList.add(new TimeTableModel(0, 3, 4, 1, "8:20", "10:10", "test1",
+//        mList.add(new TimeTableModel(0, 3, 4, 1, "8:20", "10:10", "test1",
+//                "李老师", "2", "2-13"));
+//        mList.add(new TimeTableModel(0, 6, 7, 1, "8:20", "10:10", "test1",
+//                "王", "3", "2-13"));
+//
+//
+//        mList.add(new TimeTableModel(0, 6, 7, 2, "8:20", "10:10", "test1",
+//                "老师1", "4", "2-13"));
+//        mList.add(new TimeTableModel(0, 8, 9, 2, "8:20", "10:10", "test1",
+//                "老师2", "5", "2-13"));
+//
+//        mList.add(new TimeTableModel(0, 1, 2, 3, "8:20", "10:10", "test1",
+//                "老师3", "6", "2-13"));
+//
+//        mList.add(new TimeTableModel(0, 6, 7, 3, "8:20", "10:10", "test1",
+//                "老师4", "7", "2-13"));
+//        mList.add(new TimeTableModel(0, 8, 9, 4, "8:20", "10:10", "test1",
+//                "老师5", "9", "2-13"));
+//        mList.add(new TimeTableModel(0, 3, 5, 4, "8:20", "10:10", "test1",
+//                "老师4", "8", "2-13"));
+//        mList.add(new TimeTableModel(0, 6, 8, 5, "8:20", "10:10", "test1",
+//                "老师7", "11", "2-13"));
+//        mList.add(new TimeTableModel(0, 3, 5, 5, "8:20", "10:10", "test1",
+//                "老师6", "10", "2-13"));
+
+    }
+
+
+    @Override
+    public void onSelectClass(int row, int clum) {
+        mTimaTableView.removeAllViews();
+        mList.add(new TimeTableModel(0, clum, clum+1, row, "8:20", "10:10", "test1",
                 "李老师", "2", "2-13"));
-        mList.add(new TimeTableModel(0, 6, 7, 1, "8:20", "10:10", "test1",
-                "王", "3", "2-13"));
-
-
-        mList.add(new TimeTableModel(0, 6, 7, 2, "8:20", "10:10", "test1",
-                "老师1", "4", "2-13"));
-        mList.add(new TimeTableModel(0, 8, 9, 2, "8:20", "10:10", "test1",
-                "老师2", "5", "2-13"));
-
-        mList.add(new TimeTableModel(0, 1, 2, 3, "8:20", "10:10", "test1",
-                "老师3", "6", "2-13"));
-
-        mList.add(new TimeTableModel(0, 6, 7, 3, "8:20", "10:10", "test1",
-                "老师4", "7", "2-13"));
-        mList.add(new TimeTableModel(0, 8, 9, 4, "8:20", "10:10", "test1",
-                "老师5", "9", "2-13"));
-        mList.add(new TimeTableModel(0, 3, 5, 4, "8:20", "10:10", "test1",
-                "老师4", "8", "2-13"));
-        mList.add(new TimeTableModel(0, 6, 8, 5, "8:20", "10:10", "test1",
-                "老师7", "11", "2-13"));
-        mList.add(new TimeTableModel(0, 3, 5, 5, "8:20", "10:10", "test1",
-                "老师6", "10", "2-13"));
-
+        mTimaTableView.setTimeTable(mList);
     }
 }
