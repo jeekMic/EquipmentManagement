@@ -151,12 +151,40 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-
+    /**
+     * 空白部分的点击事件，在这里添加课程
+     * @param week
+     * @param clum
+     */
     @Override
-    public void onSelectClass(int row, int clum) {
+    public void onSelectClass(int week, int clum) {
+
+        if (clum==1 || clum==2){
+            mList.add(new TimeTableModel(0, 1, 2, week, "8:20", "10:10", "test8",
+                    "李老师", "2", "2-13"));
+        }
+        if (clum==3 || clum==4 || clum ==5){
+            mList.add(new TimeTableModel(0, 3, 5, week, "8:20", "10:10", "test1",
+                    "李老师", "2", "2-13"));
+        }
+
+        if (clum==6 || clum==7){
+            mList.add(new TimeTableModel(0, 6, 7, week, "8:20", "10:10", "test3",
+                    "李老师", "2", "2-13"));
+        }
+
+        if (clum==8 || clum==9){
+            mList.add(new TimeTableModel(0, 8, 9, week, "8:20", "10:10", "test4",
+                    "李老师", "2", "2-13"));
+        }
+
+
+        if (clum==10 || clum==11 || clum==12){
+            mList.add(new TimeTableModel(0, 10, 12, week, "8:20", "10:10", "test5",
+                    "李老师", "2", "2-13"));
+        }
+        Log.d(TAG, "onSelectClass: "+week+" "+clum);
         mTimaTableView.removeAllViews();
-        mList.add(new TimeTableModel(0, clum, clum+1, row, "8:20", "10:10", "test1",
-                "李老师", "2", "2-13"));
         mTimaTableView.setTimeTable(mList);
     }
 }

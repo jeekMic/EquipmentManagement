@@ -222,7 +222,6 @@ public class TimeTableView extends LinearLayout {
                 @Override
                 public void onClick(View v) {
                     listener.onSelectClass(week, (start + num));
-                    Toast.makeText(getContext(), "星期" + week + "第" + (start + num) + "节", Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -283,7 +282,7 @@ public class TimeTableView extends LinearLayout {
         mTimeTableNameView.setWidth(dip2px(50));
         mTimeTableNameView.setTextSize(16);
         mTimeTableNameView.setGravity(Gravity.CENTER);
-        mTimeTableNameView.setText(model.getName() + "@" + model.getClassroom());
+        mTimeTableNameView.setText(model.getName() + "@" + model.getStartnum()+"-"+model.getEndnum());
         mTimeTableView.addView(mTimeTableNameView);
         mTimeTableView.addView(getWeekTransverseLine());
         mTimeTableView.setBackgroundDrawable(getContext().getResources()
@@ -339,7 +338,7 @@ public class TimeTableView extends LinearLayout {
         if (!isRepeat) {
             colorStr[colornum] = name;
             colornum++;
-        }
+        }//
     }
 
 
