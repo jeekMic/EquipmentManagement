@@ -15,11 +15,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.tencent.cloud.ai.equipmentmanagement.R;
 import com.tencent.cloud.ai.equipmentmanagement.base.BaseActivity;
 import com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView;
 import com.tencent.cloud.ai.equipmentmanagement.listener.ClassListener;
+import com.tencent.cloud.ai.equipmentmanagement.model.ClassInfo;
 import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
+import com.tencent.cloud.ai.equipmentmanagement.utils.TestString;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,7 +90,12 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                //这里模拟访问数据成功
                 Log.d(TAG, "onResponse: " + response.body().string());
+                String result = TestString.classInfo;//模拟数据 真实数据为：response.body().string()
+                Log.e("hb==: ",result);
+                Gson gson  = new Gson();
+                ClassInfo info = gson.fromJson(result, ClassInfo.class);
 
             }
         });
@@ -160,7 +168,7 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
     public void onSelectClass(int week, int clum) {
 
         if (clum==1 || clum==2){
-            mList.add(new TimeTableModel(0, 1, 2, week, "8:20", "10:10", "test8",
+            mList.add(new TimeTableModel(0, 1, 2, week, "8:20", "10:10", "test1",
                     "李老师", "2", "2-13"));
         }
         if (clum==3 || clum==4 || clum ==5){

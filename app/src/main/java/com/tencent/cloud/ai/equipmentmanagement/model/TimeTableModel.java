@@ -120,4 +120,11 @@ public class TimeTableModel {
         this.weeknum = weeknum;
     }
 
+    /**
+     *
+     * @param info
+     */
+    public TimeTableModel(ClassInfo.CourseDTO info){
+
+    }
 }

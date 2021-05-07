@@ -40,5 +40,7 @@ dependencies {
     implementation 'pub.devrel:easypermissions:2.0.0'
     //服务器请求框架
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
 
 }
