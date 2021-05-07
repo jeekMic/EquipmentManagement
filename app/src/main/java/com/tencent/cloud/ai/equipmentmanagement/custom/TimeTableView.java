@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -38,14 +39,14 @@ public class TimeTableView extends LinearLayout {
             R.drawable.select_label_yi, R.drawable.select_label_wuw};
     private final static int START = 0;
     //最大节数
-    public final static int MAXNUM = 12;
+    public final static int MAXNUM = 5;
     //显示到星期几
     public final static int WEEKNUM = 7;
     //单个View高度
-    private final static int TimeTableHeight = 50;
+    private final static int TimeTableHeight = 80;
     //线的高度
     private final static int TimeTableLineHeight = 2;
-    private final static int TimeTableNumWidth = 20;
+    private final static int TimeTableNumWidth = 80;
     private final static int TimeTableWeekNameHeight = 30;
     private LinearLayout mHorizontalWeekLayout;//第一行的星期显示
     private LinearLayout mVerticalWeekLaout;//课程格子
@@ -138,7 +139,8 @@ public class TimeTableView extends LinearLayout {
                         mNum.setHeight(dip2px(TimeTableHeight));
                         mNum.setWidth(dip2px(TimeTableNumWidth));
                         mNum.setTextSize(14);
-                        mNum.setText(j + "");
+                        mNum.setText("第 "+j + "节课\n 10:00~11:00");
+                        mNum.setTextSize(12);
                         mMonday.addView(mNum);
                         mMonday.addView(getWeekTransverseLine());
                     }
@@ -175,7 +177,7 @@ public class TimeTableView extends LinearLayout {
                     //添加
                     LinearLayout mLayout = getTimeTableView(mListMon, i);
                     mLayout.setOrientation(VERTICAL);
-                    ViewGroup.LayoutParams linearParams = new ViewGroup.LayoutParams((getViewWidth() - dip2px(20)) / WEEKNUM, LayoutParams.FILL_PARENT);
+                    ViewGroup.LayoutParams linearParams = new ViewGroup.LayoutParams((getViewWidth() - dip2px(80)) / WEEKNUM, LayoutParams.FILL_PARENT);
                     mLayout.setLayoutParams(linearParams);
                     mLayout.setWeightSum(1);
                     mVerticalWeekLaout.addView(mLayout);

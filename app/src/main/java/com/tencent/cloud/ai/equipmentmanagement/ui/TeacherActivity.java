@@ -43,7 +43,7 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
     private  Call call;
     private Button addclass, use_require;
     private ScrollView t_main_scroview;
-    private LinearLayout t_sy_application;
+    private LinearLayout t_sy_application,ll_class;
     private List<TimeTableModel> mList;
     private TimeTableView mTimaTableView;
 
@@ -64,7 +64,7 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
         Toast.makeText(this, "排课", Toast.LENGTH_SHORT).show();
 
 
-        mTimaTableView.setTimeTable(mList);
+
         mTimaTableView.setListener(this);
     }
 
@@ -74,9 +74,10 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
         mTimaTableView = (TimeTableView) findViewById(R.id.t_main_timetable_ly);
         t_main_scroview = findViewById(R.id.t_main_scrollview);
         t_sy_application = findViewById(R.id.t_sy_application);
+        ll_class = findViewById(R.id.ll_class);
 
         addclass.setOnClickListener(this);
-        addList();
+       // addList();
         use_require = findViewById(R.id.use_require);
         use_require.setOnClickListener(this);
     }
@@ -96,6 +97,10 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
                 Log.e("hb==: ",result);
                 Gson gson  = new Gson();
                 ClassInfo info = gson.fromJson(result, ClassInfo.class);
+                for (int i=0;i<info.getCourse().size();i++){
+                    mList.add(new TimeTableModel(info.getCourse().get(i)));
+                }
+                mTimaTableView.setTimeTable(mList);
 
             }
         });
@@ -107,11 +112,13 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
             case R.id.add_class:
                 Toast.makeText(this, "排课", Toast.LENGTH_SHORT).show();
                 t_main_scroview.setVisibility(View.VISIBLE);
+                ll_class.setVisibility(View.VISIBLE);
                 t_sy_application.setVisibility(View.GONE);
                 break;
             case R.id.use_require:
                 Toast.makeText(this, "耗材申请", Toast.LENGTH_SHORT).show();
                 t_main_scroview.setVisibility(View.GONE);
+                ll_class.setVisibility(View.GONE);
                 t_sy_application.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -130,33 +137,8 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void addList() {
-        mList.add(new TimeTableModel(0, 1, 2, 2, "8:20", "10:10", "test1",
+        mList.add(new TimeTableModel(0, 1, 1, 2, "8:20", "10:10", "test1",
                 "王老师", "1", "2-13"));
-//        mList.add(new TimeTableModel(0, 3, 4, 1, "8:20", "10:10", "test1",
-//                "李老师", "2", "2-13"));
-//        mList.add(new TimeTableModel(0, 6, 7, 1, "8:20", "10:10", "test1",
-//                "王", "3", "2-13"));
-//
-//
-//        mList.add(new TimeTableModel(0, 6, 7, 2, "8:20", "10:10", "test1",
-//                "老师1", "4", "2-13"));
-//        mList.add(new TimeTableModel(0, 8, 9, 2, "8:20", "10:10", "test1",
-//                "老师2", "5", "2-13"));
-//
-//        mList.add(new TimeTableModel(0, 1, 2, 3, "8:20", "10:10", "test1",
-//                "老师3", "6", "2-13"));
-//
-//        mList.add(new TimeTableModel(0, 6, 7, 3, "8:20", "10:10", "test1",
-//                "老师4", "7", "2-13"));
-//        mList.add(new TimeTableModel(0, 8, 9, 4, "8:20", "10:10", "test1",
-//                "老师5", "9", "2-13"));
-//        mList.add(new TimeTableModel(0, 3, 5, 4, "8:20", "10:10", "test1",
-//                "老师4", "8", "2-13"));
-//        mList.add(new TimeTableModel(0, 6, 8, 5, "8:20", "10:10", "test1",
-//                "老师7", "11", "2-13"));
-//        mList.add(new TimeTableModel(0, 3, 5, 5, "8:20", "10:10", "test1",
-//                "老师6", "10", "2-13"));
-
     }
 
     /**
@@ -166,31 +148,9 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
      */
     @Override
     public void onSelectClass(int week, int clum) {
+        mList.add(new TimeTableModel(0, clum, clum, week, "8:20", "10:10", "test1",
+                "李老师", "2", "2-13"));
 
-        if (clum==1 || clum==2){
-            mList.add(new TimeTableModel(0, 1, 2, week, "8:20", "10:10", "test1",
-                    "李老师", "2", "2-13"));
-        }
-        if (clum==3 || clum==4 || clum ==5){
-            mList.add(new TimeTableModel(0, 3, 5, week, "8:20", "10:10", "test1",
-                    "李老师", "2", "2-13"));
-        }
-
-        if (clum==6 || clum==7){
-            mList.add(new TimeTableModel(0, 6, 7, week, "8:20", "10:10", "test3",
-                    "李老师", "2", "2-13"));
-        }
-
-        if (clum==8 || clum==9){
-            mList.add(new TimeTableModel(0, 8, 9, week, "8:20", "10:10", "test4",
-                    "李老师", "2", "2-13"));
-        }
-
-
-        if (clum==10 || clum==11 || clum==12){
-            mList.add(new TimeTableModel(0, 10, 12, week, "8:20", "10:10", "test5",
-                    "李老师", "2", "2-13"));
-        }
         Log.d(TAG, "onSelectClass: "+week+" "+clum);
         mTimaTableView.removeAllViews();
         mTimaTableView.setTimeTable(mList);
