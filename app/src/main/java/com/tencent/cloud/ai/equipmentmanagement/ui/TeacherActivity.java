@@ -23,6 +23,7 @@ import com.tencent.cloud.ai.equipmentmanagement.listener.ClassListener;
 import com.tencent.cloud.ai.equipmentmanagement.model.ClassInfo;
 import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
 import com.tencent.cloud.ai.equipmentmanagement.utils.TestString;
+import com.tencent.cloud.ai.equipmentmanagement.utils.UrlUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ import okhttp3.Response;
 public class TeacherActivity extends BaseActivity implements View.OnClickListener, ClassListener {
 
     public final String TAG = this.getClass().getSimpleName();
-    String url = "https://wwww.baidu.com";
+    String url = UrlUtil.url + "/course/getAllCourse?week_num=1";
     private  OkHttpClient okHttpClient;
     private  Request request;
     private  Call call;
