@@ -158,18 +158,19 @@
         android:layout_weight="0.1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
+
         <Button
             android:id="@+id/add_class"
-            android:text="排课"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
-            android:layout_height="60dp">
-        </Button>
+            android:layout_weight="1"
+            android:text="排课"></Button>
+
         <Button
+            android:id="@+id/use_require"
             android:text="耗材申请"
             android:layout_margin="5dp"
-            android:id="@+id/use_require"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="60dp">
