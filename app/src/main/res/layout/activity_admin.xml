@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:fillViewport="false"
-        android:layout_weight="0.9"
+        android:layout_weight="0.8"
         >
         <com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView
             android:id="@+id/main_timetable_ly"
@@ -69,6 +69,58 @@
         </Button>
 
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_select_admin"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="教室:"
+                android:textSize="19dp"
+                android:gravity="center"
+                android:layout_weight="0.3"
+                android:layout_width="0dp"
+                android:layout_height="30dp">
+            </TextView>
+            <Spinner
+                android:id="@+id/select_classroom"
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:entries="@array/classroom"
+                android:layout_height="60dp">
+            </Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="19dp"
+                android:text="周数:"
+                android:gravity="center"
+                android:layout_weight="0.3"
+                android:layout_width="0dp"
+                android:layout_height="60dp">
+            </TextView>
+            <Spinner
+                android:id="@+id/select_week"
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:entries="@array/weeks"
+                android:layout_height="30dp">
+            </Spinner>
+        </LinearLayout>
+        <Button
+            android:text="查询"
+            android:id="@+id/bt_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Button>
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="15dp"
