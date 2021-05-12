@@ -1,6 +1,5 @@
 package com.tencent.cloud.ai.equipmentmanagement.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
@@ -12,11 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.tencent.cloud.ai.equipmentmanagement.R;
 import com.tencent.cloud.ai.equipmentmanagement.form.LoginForm;
+import com.tencent.cloud.ai.equipmentmanagement.utils.SharePreferenceUtils;
 import com.tencent.cloud.ai.equipmentmanagement.utils.UrlUtil;
 
 import org.angmarch.views.NiceSpinner;
@@ -45,6 +47,10 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
     public static final int RC_PERMISSIONS = 101;
     public int idcard = 0;
     Integer userType = null;
+    String username;
+    String password;
+    private CheckBox remember_pwd;
+    private Boolean remember = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
 
     private void initView() {
         niceSpinner = findViewById(R.id.nice_spinner);
+        remember_pwd = findViewById(R.id.remember_pwd);
         niceSpinner.attachDataSource(spinnerData);
         niceSpinner.setBackgroundResource(R.drawable.textview_round_border);
         niceSpinner.setTextColor(Color.WHITE);
@@ -84,6 +91,16 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
         nice_spinner= findViewById(R.id.nice_spinner);
         login_btn= findViewById(R.id.login_btn);
         login_btn.setOnClickListener(this);
+        username = SharePreferenceUtils.getString(this,"username");
+        password = SharePreferenceUtils.getString(this,"password");
+        login_input_username.setText(username);
+        login_input_password.setText(password);
+        remember_pwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                remember = b;
+            }
+        });
     }
 
     /**
@@ -111,6 +128,9 @@ public class LoginActivity extends AppCompatActivity implements EasyPermissions.
     @Override
     public void onClick(View view) {
         Toast.makeText(this, "login", Toast.LENGTH_SHORT).show();
+
+        SharePreferenceUtils.putString(this,"username",login_input_username.getText().toString());
+        SharePreferenceUtils.putString(this,"password",login_input_password.getText().toString());
         if (idcard==0){
             if (login_input_username.getText().toString().equals("admin") && login_input_password.getText().toString().equals("admin")) {
                 startActivity(new Intent(this, AdminActivity.class));

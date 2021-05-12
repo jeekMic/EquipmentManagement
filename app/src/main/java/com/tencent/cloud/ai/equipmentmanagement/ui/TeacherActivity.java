@@ -22,6 +22,7 @@ import com.tencent.cloud.ai.equipmentmanagement.custom.TimeTableView;
 import com.tencent.cloud.ai.equipmentmanagement.listener.ClassListener;
 import com.tencent.cloud.ai.equipmentmanagement.listener.DXHttpListener;
 import com.tencent.cloud.ai.equipmentmanagement.model.ClassInfo;
+import com.tencent.cloud.ai.equipmentmanagement.model.CreateUserDialog;
 import com.tencent.cloud.ai.equipmentmanagement.model.RequestBean;
 import com.tencent.cloud.ai.equipmentmanagement.model.TimeTableModel;
 import com.tencent.cloud.ai.equipmentmanagement.utils.DXHttpManager;
@@ -191,6 +192,7 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
      */
     @Override
     public void onSelectClass(int week, int clum) {
+        showEditDialog();
         mList.add(new TimeTableModel(0, clum, clum, week, "8:20", "10:10", "test1",
                 "李老师", "2", "2-13"));
 
@@ -198,4 +200,25 @@ public class TeacherActivity extends BaseActivity implements View.OnClickListene
         mTimaTableView.removeAllViews();
         mTimaTableView.setTimeTable(mList);
     }
+    CreateUserDialog createUserDialog;
+    public void showEditDialog() {
+        createUserDialog = new CreateUserDialog(this,R.style.Transparent ,onClickListener);
+        createUserDialog.show();
+    }
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.btn_save:
+
+                    String name = createUserDialog.text_name.getText().toString().trim();
+                    String mobile = createUserDialog.text_mobile.getText().toString().trim();
+                    String info = createUserDialog.text_info.getText().toString().trim();
+
+                    System.out.println(name+"——"+mobile+"——"+info);
+                    break;
+            }
+        }
+    };
 }

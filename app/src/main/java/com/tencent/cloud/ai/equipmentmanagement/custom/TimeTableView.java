@@ -284,7 +284,12 @@ public class TimeTableView extends LinearLayout {
         mTimeTableNameView.setWidth(dip2px(50));
         mTimeTableNameView.setTextSize(16);
         mTimeTableNameView.setGravity(Gravity.CENTER);
-        mTimeTableNameView.setText(model.getClassRoomName()+ ":" + model.getCourseName());
+        if (model.getClassRoomName()==""||model.getClassRoomName()==null||model.getClassRoomName().length()==0){
+            mTimeTableNameView.setText(model.getTeacher()+ ":" + model.getClassRoomName());
+        }else {
+            mTimeTableNameView.setText(model.getClassRoomName()+ ":" + model.getCourseName());
+        }
+
         mTimeTableView.addView(mTimeTableNameView);
         mTimeTableView.addView(getWeekTransverseLine());
         mTimeTableView.setBackgroundDrawable(getContext().getResources()

@@ -159,7 +159,7 @@ public class TimeTableModel {
         this.starttime = info.getCreateTime();
         this.endtime = info.getCreateTime();
         this.name = "test1";
-        this.teacher = "教师: "+info.getTeacherId();
+        this.teacher = "教师: "+info.getUsername();
         this.classroom = info.getClassroomName();
         this.weeknum = "weekNum:"+info.getWeekNum();
     }
