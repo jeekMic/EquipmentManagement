@@ -11,6 +11,33 @@ public class TimeTableModel {
     private String teacher="";
     private String classroom="";
     private String weeknum="";
+    private String classRoomName="";
+    private String courseName="";
+    private String TeacherName="";
+
+    public String getClassRoomName() {
+        return classRoomName;
+    }
+
+    public void setClassRoomName(String classRoomName) {
+        this.classRoomName = classRoomName;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getTeacherName() {
+        return TeacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        TeacherName = teacherName;
+    }
 
     @Override
     public String toString() {
@@ -151,5 +178,7 @@ public class TimeTableModel {
         this.teacher = "教师: "+info.getTeacherId();
         this.classroom = info.getClassroomName();
         this.weeknum = "weekNum:"+info.getWeekNum();
+        this.classRoomName = info.getClassroomName();
+
     }
 }
