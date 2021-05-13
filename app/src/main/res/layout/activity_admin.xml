@@ -27,6 +27,7 @@
         android:padding="40dp"
         android:orientation="vertical">
         <Button
+            android:id="@+id/getAllSupply"
             android:drawableLeft="@android:drawable/btn_star"
             android:text="审批耗材申请"
             android:layout_margin="10dp"

@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EquipmentManagement">
-
+        <activity android:name=".ui.ShowApplyAllActivity"></activity>
         <activity android:name=".ui.StudentActivity" />
         <activity android:name=".ui.TeacherActivity" />
         <activity android:name=".ui.AdminActivity" />

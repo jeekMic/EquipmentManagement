@@ -2,6 +2,7 @@ package com.tencent.cloud.ai.equipmentmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,16 +31,17 @@ import java.util.List;
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener, DXHttpListener {
     private TimeTableView mTimaTableView;
     private List<TimeTableModel> mList;
-    private Button office_fair,use_info,bt_query;
+    private Button office_fair, use_info, bt_query, getAllSupply;
     private ScrollView main_scrollview;
-    private LinearLayout sy_application,ll_select_admin;
-    private Spinner select_classroom,select_week;
+    private LinearLayout sy_application, ll_select_admin;
+    private Spinner select_classroom, select_week;
     String url_default = UrlUtil.url + "/course/getAllCourse?week_num=1&classRoom_num=101";
     String url_base = UrlUtil.url + "/course/getAllCourse?";
     private String class_room = "10";
     private String class_room2 = "20";
     private String class_last = "10";
     private int week = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         ll_select_admin = (LinearLayout) findViewById(R.id.ll_select_admin);
         main_scrollview = findViewById(R.id.main_scrollview);
         sy_application = findViewById(R.id.sy_application);
+        getAllSupply = findViewById(R.id.getAllSupply);
         bt_query = findViewById(R.id.bt_query);
 
         select_classroom = findViewById(R.id.select_classroom);
@@ -59,19 +62,19 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         use_info = findViewById(R.id.use_info);
 
 
-
         office_fair.setOnClickListener(this);
         use_info.setOnClickListener(this);
         bt_query.setOnClickListener(this);
+        getAllSupply.setOnClickListener(this);
         select_classroom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (i==0)return;
-                    if (i<=9){
-                        class_last = class_room+i;
-                    }else{
-                        class_last = class_room+(i-9);
-                    }
+                if (i == 0) return;
+                if (i <= 9) {
+                    class_last = class_room + i;
+                } else {
+                    class_last = class_room + (i - 9);
+                }
             }
 
             @Override
@@ -82,7 +85,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         select_week.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0)return;
+                if (i == 0) return;
                 week = i;
             }
 
@@ -92,8 +95,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             }
         });
         //addList();
-        select_classroom.setSelection(1,true);
-        select_week.setSelection(1,true);
+        select_classroom.setSelection(1, true);
+        select_week.setSelection(1, true);
         DXHttpManager.getmInstance().sendGetRequest(url_default, null, 100, this);
     }
 
@@ -120,11 +123,12 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
     /**
      * 按钮的点击事件
+     *
      * @param v
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.use_info:
                 main_scrollview.setVisibility(View.VISIBLE);
                 ll_select_admin.setVisibility(View.VISIBLE);
@@ -136,8 +140,11 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 sy_application.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_query://查询 week_num=1&classRoom_num=301
-                String url = url_base+"week_num="+week+"&classRoom_num="+class_last;
+                String url = url_base + "week_num=" + week + "&classRoom_num=" + class_last;
                 DXHttpManager.getmInstance().sendGetRequest(url, null, 100, this);
+                break;
+            case R.id.getAllSupply://查询 week_num=1&classRoom_num=301
+                startActivity(new Intent(AdminActivity.this,ShowApplyAllActivity.class));
                 break;
             default:
                 break;
